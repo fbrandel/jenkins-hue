@@ -1,0 +1,28 @@
+{
+  "name": "jenkins-hue",
+  "version": "0.0.1",
+  "description": "Sets the hue light according to a Jenkins build state",
+  "main": "lib/JenkinsHue.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "~1.9.1",
+    "jenkins-api": "~0.1.5",
+    "node-hue-api": "~0.2.2",
+    "q": "~1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "hue",
+    "jenkins",
+    "ci",
+    "build",
+    "philips"
+  ],
+  "author": "Florian Brandel",
+  "license": "BSD-2-Clause"
+}
