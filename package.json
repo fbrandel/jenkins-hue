@@ -1,6 +1,6 @@
 {
   "name": "jenkins-hue",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Sets the hue light according to a Jenkins build state",
   "main": "lib/JenkinsHue.js",
   "directories": {
@@ -12,7 +12,9 @@
     "node-hue-api": "~0.2.2",
     "q": "~1.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "~1.18.2"
+  },
   "scripts": {
     "test": "mocha"
   },
@@ -23,6 +25,6 @@
     "build",
     "philips"
   ],
-  "author": "Florian Brandel",
-  "license": "BSD-2-Clause"
+  "author": "Florian Brandel <github@fbrandel.de> (http://www.fbrandel.de/)",
+  "license": "Apache 2.0"
 }
