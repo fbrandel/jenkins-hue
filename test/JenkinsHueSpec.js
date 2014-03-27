@@ -72,8 +72,8 @@ describe('JenkinsHue', function () {
 
         it('should save the current light state for the given lightId', function () {
             return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').then(function () {
-                expect(jenkinsHueWithConfig.currentLightStates[3]).to.exist;
-                expect(jenkinsHueWithConfig.currentLightStates[3]).to.be.object;
+                expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.exist;
+                expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.be.equals(jenkinsHueWithConfig.hueLightStates.PASSED);
             });
         });
 
