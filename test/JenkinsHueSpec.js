@@ -79,15 +79,15 @@ describe('JenkinsHue', function () {
 
         it('should blink if job color changes and is different', function() {
             var spy = sinon.spy(jenkinsHueWithConfig, 'blinkLight');
-            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').then(function () {
+            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
                 expect(spy).to.have.been.called;
             });
         });
 
         it('should not blink if job color changes and is the same ', function() {
             var spy = sinon.spy(jenkinsHueWithConfig, 'blinkLight');
-            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').then(function () {
-                return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').then(function () {
+            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
+                return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
                     expect(spy).to.have.been.calledOnce;
                 });
             });
