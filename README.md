@@ -2,6 +2,10 @@
 
 Colors your Philips Hue Lights based on a Jenkins build state.
 
+## Installation
+
+    npm install jenkins-hue
+
 ## Example
 
 ### Configuration
