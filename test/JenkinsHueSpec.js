@@ -7,6 +7,8 @@ var chai = require("chai");
 var sinon = require("sinon");
 var sinonChai = require("sinon-chai");
 var expect = chai.expect;
+var q = require('q');
+
 chai.use(sinonChai);
 
 var jenkinsHue, jenkinsHueWithConfig;
@@ -26,6 +28,13 @@ describe('JenkinsHue', function () {
     beforeEach(function () {
         jenkinsHue = new JenkinsHue();
         jenkinsHueWithConfig = new JenkinsHue(configuration);
+        sinon.stub(jenkinsHueWithConfig.jenkins, 'getJobColor');
+        sinon.stub(jenkinsHueWithConfig.hue, 'setLight').returns(q.resolve());
+    });
+
+    afterEach(function() {
+        jenkinsHueWithConfig.jenkins.getJobColor.restore();
+        jenkinsHueWithConfig.hue.setLight.restore();
     });
 
     describe('Configuration', function () {
@@ -54,6 +63,7 @@ describe('JenkinsHue', function () {
     });
 
     describe('#setLightForJenkinsJob()', function () {
+
         it('should fail with an error when no configuration was set', function () {
             expect(function () {
                 jenkinsHue.setLightForJenkinsJob(1, 'foobar');
@@ -71,6 +81,8 @@ describe('JenkinsHue', function () {
         });
 
         it('should save the current light state for the given lightId', function () {
+            jenkinsHueWithConfig.jenkins.getJobColor.returns(q.resolve('green'));
+
             return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').then(function () {
                 expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.exist;
                 expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.be.equals(jenkinsHueWithConfig.hueLightStates.PASSED);
@@ -79,13 +91,20 @@ describe('JenkinsHue', function () {
 
         it('should blink if job color changes and is different', function() {
             var spy = sinon.spy(jenkinsHueWithConfig, 'blinkLight');
+            var stub = jenkinsHueWithConfig.jenkins.getJobColor;
+            stub.onCall(0).returns(q.resolve('green'));
+
             return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
-                expect(spy).to.have.been.called;
+                expect(spy).to.have.been.calledOnce;
             });
         });
 
         it('should not blink if job color changes and is the same ', function() {
             var spy = sinon.spy(jenkinsHueWithConfig, 'blinkLight');
+            var stub = jenkinsHueWithConfig.jenkins.getJobColor;
+            stub.onCall(0).returns(q.resolve('green'));
+            stub.onCall(1).returns(q.resolve('green'));
+
             return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
                 return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
                     expect(spy).to.have.been.calledOnce;
