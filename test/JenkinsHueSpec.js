@@ -112,4 +112,12 @@ describe('JenkinsHue', function () {
             });
         });
     });
+
+    describe('#switchOff', function() {
+        it('should switch the given light off', function() {
+            expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.not.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
+            jenkinsHueWithConfig.switchOff(3);
+            expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
+        });
+    });
 });
