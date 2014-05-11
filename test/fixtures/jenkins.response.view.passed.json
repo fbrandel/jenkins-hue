@@ -1,0 +1,224 @@
+{"assignedLabels": [
+    {}
+], "mode": "NORMAL", "nodeDescription": "Jenkins Master-Knoten", "nodeName": "", "numExecutors": 3, "description": null, "jobs": [
+    {
+        "name": "activerecord-jdbc-master",
+        "url": "http://ci.jruby.org/job/activerecord-jdbc-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-dist-1_6",
+        "url": "http://ci.jruby.org/job/jruby-dist-1_6/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-dist-1_7",
+        "url": "http://ci.jruby.org/job/jruby-dist-1_7/",
+        "color": "blue"
+    },
+    {
+        "name": "jruby-dist-master",
+        "url": "http://ci.jruby.org/job/jruby-dist-master/",
+        "color": "blue"
+    },
+    {
+        "name": "jruby-findbugs",
+        "url": "http://ci.jruby.org/job/jruby-findbugs/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-git",
+        "url": "http://ci.jruby.org/job/jruby-git/",
+        "color": "blue"
+    },
+    {
+        "name": "jruby-github",
+        "url": "http://ci.jruby.org/job/jruby-github/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-launcher",
+        "url": "http://ci.jruby.org/job/jruby-launcher/",
+        "color": "blue"
+    },
+    {
+        "name": "jruby-ossl",
+        "url": "http://ci.jruby.org/job/jruby-ossl/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-rack-dist",
+        "url": "http://ci.jruby.org/job/jruby-rack-dist/",
+        "color": "blue"
+    },
+    {
+        "name": "jruby-rack-jruby-master",
+        "url": "http://ci.jruby.org/job/jruby-rack-jruby-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-solaris",
+        "url": "http://ci.jruby.org/job/jruby-solaris/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-spec-ci-master",
+        "url": "http://ci.jruby.org/job/jruby-spec-ci-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-spec-ci-release",
+        "url": "http://ci.jruby.org/job/jruby-spec-ci-release/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-spec-coverage",
+        "url": "http://ci.jruby.org/job/jruby-spec-coverage/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-all-master",
+        "url": "http://ci.jruby.org/job/jruby-test-all-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-all-release",
+        "url": "http://ci.jruby.org/job/jruby-test-all-release/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-jar-complete2",
+        "url": "http://ci.jruby.org/job/jruby-test-jar-complete2/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-master",
+        "url": "http://ci.jruby.org/job/jruby-test-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-master-java8",
+        "url": "http://ci.jruby.org/job/jruby-test-master-java8/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-matrix",
+        "url": "http://ci.jruby.org/job/jruby-test-matrix/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test-release",
+        "url": "http://ci.jruby.org/job/jruby-test-release/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-test19-master",
+        "url": "http://ci.jruby.org/job/jruby-test19-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-unpack",
+        "url": "http://ci.jruby.org/job/jruby-unpack/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-unpack-ubuntu",
+        "url": "http://ci.jruby.org/job/jruby-unpack-ubuntu/",
+        "color": "disabled"
+    },
+    {
+        "name": "jruby-windows",
+        "url": "http://ci.jruby.org/job/jruby-windows/",
+        "color": "aborted"
+    },
+    {
+        "name": "rack-jruby-trunk",
+        "url": "http://ci.jruby.org/job/rack-jruby-trunk/",
+        "color": "blue"
+    },
+    {
+        "name": "rails-3-1-stable",
+        "url": "http://ci.jruby.org/job/rails-3-1-stable/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-3-1-stable-activerecord-jruby-jdbcmysql",
+        "url": "http://ci.jruby.org/job/rails-3-1-stable-activerecord-jruby-jdbcmysql/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-3-1-stable-activerecord-jruby-jdbcsqlite3",
+        "url": "http://ci.jruby.org/job/rails-3-1-stable-activerecord-jruby-jdbcsqlite3/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-3-1-stable-railties-jruby",
+        "url": "http://ci.jruby.org/job/rails-3-1-stable-railties-jruby/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-master",
+        "url": "http://ci.jruby.org/job/rails-master/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-master-activerecord-jruby-jdbcmysql",
+        "url": "http://ci.jruby.org/job/rails-master-activerecord-jruby-jdbcmysql/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-master-activerecord-jruby-jdbcsqlite3",
+        "url": "http://ci.jruby.org/job/rails-master-activerecord-jruby-jdbcsqlite3/",
+        "color": "disabled"
+    },
+    {
+        "name": "rails-master-railties-jruby",
+        "url": "http://ci.jruby.org/job/rails-master-railties-jruby/",
+        "color": "disabled"
+    },
+    {
+        "name": "ruboto-quick",
+        "url": "http://ci.jruby.org/job/ruboto-quick/",
+        "color": "disabled"
+    },
+    {
+        "name": "ruboto_jruby_master",
+        "url": "http://ci.jruby.org/job/ruboto_jruby_master/",
+        "color": "disabled"
+    },
+    {
+        "name": "ruboto_rubies",
+        "url": "http://ci.jruby.org/job/ruboto_rubies/",
+        "color": "disabled"
+    },
+    {
+        "name": "ruboto_standalone",
+        "url": "http://ci.jruby.org/job/ruboto_standalone/",
+        "color": "disabled"
+    },
+    {
+        "name": "ruboto_update",
+        "url": "http://ci.jruby.org/job/ruboto_update/",
+        "color": "disabled"
+    }
+], "overallLoad": {}, "primaryView": {
+    "name": "All",
+    "url": "http://ci.jruby.org/"
+}, "quietingDown": false, "slaveAgentPort": 32323, "unlabeledLoad": {}, "useCrumbs": false, "useSecurity": true, "views": [
+    {
+        "name": "All",
+        "url": "http://ci.jruby.org/"
+    },
+    {
+        "name": "JRuby Core",
+        "url": "http://ci.jruby.org/view/JRuby%20Core/"
+    },
+    {
+        "name": "Rails",
+        "url": "http://ci.jruby.org/view/Rails/"
+    },
+    {
+        "name": "Ruboto",
+        "url": "http://ci.jruby.org/view/Ruboto/"
+    }
+]}
