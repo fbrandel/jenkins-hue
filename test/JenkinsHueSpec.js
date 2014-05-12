@@ -120,4 +120,28 @@ describe('JenkinsHue', function () {
             expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
         });
     });
+
+    describe('#isLightSwitchedOn', function() {
+        beforeEach(function() {
+            sinon.stub(jenkinsHueWithConfig.hue, 'getLightStatus')
+                .withArgs(1).returns(q.resolve(require('./fixtures/hue.lightstate.on.json')))
+                .withArgs(2).returns(q.resolve(require('./fixtures/hue.lightstate.off.json')));
+        });
+
+        afterEach(function() {
+            jenkinsHueWithConfig.hue.getLightStatus.restore();
+        });
+
+        it('should return true if light is on', function() {
+           return jenkinsHueWithConfig.isLightSwitchedOn(1).done(function(lightState) {
+               expect(lightState).to.be.true;
+           });
+        });
+
+        it('should return false if light is off', function() {
+            return jenkinsHueWithConfig.isLightSwitchedOn(2).done(function(lightState) {
+                expect(lightState).to.be.false;
+            });
+        });
+    });
 });
