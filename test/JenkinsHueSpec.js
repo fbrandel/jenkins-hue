@@ -23,6 +23,9 @@ var configuration = {
     }
 };
 
+var LIGHT_ID_SWITCHED_ON = 1;
+var LIGHT_ID_SWITCHED_OFF = 2;
+
 describe('JenkinsHue', function () {
 
     beforeEach(function () {
@@ -30,11 +33,18 @@ describe('JenkinsHue', function () {
         jenkinsHueWithConfig = new JenkinsHue(configuration);
         sinon.stub(jenkinsHueWithConfig.jenkins, 'getJobColor');
         sinon.stub(jenkinsHueWithConfig.hue, 'setLight').returns(q.resolve());
+        //sinon.stub(jenkinsHueWithConfig, 'isLightSwitchedOn').returns(q.resolve());
+        sinon.stub(jenkinsHueWithConfig.hue, 'getLightStatus')
+            .withArgs(LIGHT_ID_SWITCHED_ON).returns(q.resolve(require('./fixtures/hue.lightstate.on.json')))
+            .withArgs(LIGHT_ID_SWITCHED_OFF).returns(q.resolve(require('./fixtures/hue.lightstate.off.json')));
+
     });
 
     afterEach(function() {
         jenkinsHueWithConfig.jenkins.getJobColor.restore();
         jenkinsHueWithConfig.hue.setLight.restore();
+        //jenkinsHueWithConfig.isLightSwitchedOn.restore();
+        jenkinsHueWithConfig.hue.getLightStatus.restore();
     });
 
     describe('Configuration', function () {
@@ -81,11 +91,12 @@ describe('JenkinsHue', function () {
         });
 
         it('should save the current light state for the given lightId', function () {
+            //jenkinsHueWithConfig.isLightSwitchedOn.returns(q.resolve(true));
             jenkinsHueWithConfig.jenkins.getJobColor.returns(q.resolve('green'));
 
-            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').then(function () {
-                expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.exist;
-                expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.be.equals(jenkinsHueWithConfig.hueLightStates.PASSED);
+            return jenkinsHueWithConfig.setLightForJenkinsJob(1, 'jruby-dist-1_7').then(function () {
+                expect(jenkinsHueWithConfig.getCurrentLightState(1)).to.exist;
+                expect(jenkinsHueWithConfig.getCurrentLightState(1)).to.be.equals(jenkinsHueWithConfig.hueLightStates.PASSED);
             });
         });
 
@@ -94,7 +105,7 @@ describe('JenkinsHue', function () {
             var stub = jenkinsHueWithConfig.jenkins.getJobColor;
             stub.onCall(0).returns(q.resolve('green'));
 
-            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
+            return jenkinsHueWithConfig.setLightForJenkinsJob(1, 'jruby-dist-1_7').done(function () {
                 expect(spy).to.have.been.calledOnce;
             });
         });
@@ -105,8 +116,8 @@ describe('JenkinsHue', function () {
             stub.onCall(0).returns(q.resolve('green'));
             stub.onCall(1).returns(q.resolve('green'));
 
-            return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
-                return jenkinsHueWithConfig.setLightForJenkinsJob(3, 'jruby-dist-1_7').done(function () {
+            return jenkinsHueWithConfig.setLightForJenkinsJob(1, 'jruby-dist-1_7').done(function () {
+                return jenkinsHueWithConfig.setLightForJenkinsJob(1, 'jruby-dist-1_7').done(function () {
                     expect(spy).to.have.been.calledOnce;
                 });
             });
@@ -115,31 +126,21 @@ describe('JenkinsHue', function () {
 
     describe('#switchOff', function() {
         it('should switch the given light off', function() {
-            expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.not.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
-            jenkinsHueWithConfig.switchOff(3);
-            expect(jenkinsHueWithConfig.getCurrentLightState(3)).to.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
+            expect(jenkinsHueWithConfig.getCurrentLightState(1)).to.not.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
+            jenkinsHueWithConfig.switchOff(1);
+            expect(jenkinsHueWithConfig.getCurrentLightState(1)).to.be.equals(jenkinsHueWithConfig.hueLightStates.OFF);
         });
     });
 
     describe('#isLightSwitchedOn', function() {
-        beforeEach(function() {
-            sinon.stub(jenkinsHueWithConfig.hue, 'getLightStatus')
-                .withArgs(1).returns(q.resolve(require('./fixtures/hue.lightstate.on.json')))
-                .withArgs(2).returns(q.resolve(require('./fixtures/hue.lightstate.off.json')));
-        });
-
-        afterEach(function() {
-            jenkinsHueWithConfig.hue.getLightStatus.restore();
-        });
-
         it('should return true if light is on', function() {
-           return jenkinsHueWithConfig.isLightSwitchedOn(1).done(function(lightState) {
+           return jenkinsHueWithConfig.isLightSwitchedOn(LIGHT_ID_SWITCHED_ON).done(function(lightState) {
                expect(lightState).to.be.true;
            });
         });
 
         it('should return false if light is off', function() {
-            return jenkinsHueWithConfig.isLightSwitchedOn(2).done(function(lightState) {
+            return jenkinsHueWithConfig.isLightSwitchedOn(LIGHT_ID_SWITCHED_OFF).done(function(lightState) {
                 expect(lightState).to.be.false;
             });
         });
