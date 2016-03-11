@@ -20,6 +20,11 @@ var configuration = {
     hue: {
         host: '192.168.178.210',
         username: ''
+    },
+    hueLightStates: {
+        PASSED: {
+            key: 'value'
+        }
     }
 };
 
@@ -57,6 +62,7 @@ describe('JenkinsHue', function () {
             var config = jenkinsHueWithConfig.config;
             expect(config).not.to.be.empty;
             expect(config.jenkins.host).to.be.equals('http://ci.jruby.org');
+            expect(config.hueLightStates.PASSED.key).to.be.equals('value');
         });
     });
 
